@@ -7,6 +7,7 @@ metadata:
   author: dAAAb
   version: "5.0.0"
   repository: https://github.com/dAAAb/openclaw-even-g2-bridge-skill
+  icon: assets/icon.png
   required_secrets:
     - name: GATEWAY_URL
       description: "Your OpenClaw Gateway URL (e.g. https://your-gateway.example.com)"
