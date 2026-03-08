@@ -29,6 +29,7 @@ npx skills add dAAAb/openclaw-skills --skill github
 | **[blogwatcher](./blogwatcher/)** | 📡 Monitor blogs and RSS/Atom feeds | `blogwatcher` CLI |
 | **[switchbot](./switchbot/)** | 🏠 Control SwitchBot smart home devices | Python 3, SwitchBot API key |
 | **[base-wallet](./base-wallet/)** | 🔐 Crypto wallet for AI agents (Base chain) | Node.js, ethers.js |
+| **[even-g2-bridge](./even-g2-bridge/)** | 🕶️ Connect Even Realities G2 smart glasses to AI agents | Cloudflare account, OpenClaw Gateway |
 
 ## What are Agent Skills?
 
