@@ -1,6 +1,38 @@
 ---
 name: even-g2-bridge
 description: "Connect Even Realities G2 smart glasses to OpenClaw via Cloudflare Worker. Deploys a bridge that routes G2 voice commands to your OpenClaw Gateway — same agent, same memory, same tools, just voice instead of typing. Supports short conversations (direct reply on glasses), long tasks (background processing with Telegram delivery), and image generation (DALL-E → Telegram). Use when: setting up G2 glasses with OpenClaw, deploying the G2 bridge worker, or troubleshooting G2 ↔ OpenClaw connectivity."
+license: MIT
+compatibility: "Requires: Cloudflare account (free plan works), OpenClaw Gateway with HTTP API enabled. Optional: OpenAI API key (image gen), Telegram bot (rich content delivery)."
+metadata:
+  author: dAAAb
+  version: "5.0.0"
+  repository: https://github.com/dAAAb/openclaw-even-g2-bridge-skill
+  required_secrets:
+    - name: GATEWAY_URL
+      description: "Your OpenClaw Gateway URL (e.g. https://your-gateway.example.com)"
+      required: true
+    - name: GATEWAY_TOKEN
+      description: "OpenClaw Gateway auth token — stored in CF Worker secrets, never exposed to glasses"
+      required: true
+    - name: G2_TOKEN
+      description: "Token for G2 glasses authentication — you choose this value"
+      required: true
+    - name: ANTHROPIC_API_KEY
+      description: "Anthropic API key for fallback when Gateway is unreachable"
+      required: true
+    - name: TELEGRAM_BOT_TOKEN
+      description: "Telegram bot token for delivering rich content (images, code, long text)"
+      required: false
+    - name: TELEGRAM_CHAT_ID
+      description: "Telegram chat ID for content delivery"
+      required: false
+    - name: OPENAI_API_KEY
+      description: "OpenAI API key for DALL-E image generation"
+      required: false
+  security_notes: |
+    Two-layer token auth: G2 glasses only know G2_TOKEN. GATEWAY_TOKEN stays in
+    Worker secrets, never exposed to glasses. If glasses are lost, change only G2_TOKEN.
+    Consider using a scoped, least-privilege Gateway token for the Worker.
 ---
 
 # Even Realities G2 × OpenClaw Bridge
